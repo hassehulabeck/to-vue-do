@@ -70,7 +70,7 @@ export default {
         name: task.name,
         id: lastId + 1,
         needsToBeDone: true,
-        cost: Number(task.cost), // Utan number är det ett strängvärde som kommer från input...
+        cost: task.cost,
       };
       this.todolist.push(newTask);
       // Yeah.

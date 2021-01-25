@@ -3,7 +3,8 @@
     <label for="task">Task</label>
     <input type="text" v-model.trim="newTask.name" />
     <label for="cost">Cost</label>
-    <input type="number" v-model.trim="newTask.cost" />
+    <input type="number" v-model.number="newTask.cost" />
+    <!-- Ett bra sätt att omvandla från sträng till number fanns förstås inbyggt i v-model. -->
     <button @click="createTask">Create task</button>
   </form>
 </template>
