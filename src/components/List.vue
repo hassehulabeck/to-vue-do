@@ -73,6 +73,7 @@ export default {
         cost: Number(task.cost), // Utan number är det ett strängvärde som kommer från input...
       };
       this.todolist.push(newTask);
+      // Yeah.
     },
   },
 };
