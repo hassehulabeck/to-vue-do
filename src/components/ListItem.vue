@@ -1,10 +1,12 @@
 <template>
   <div v-if="item.needsToBeDone">
-    {{ item.name }}
+    <section>{{ item.name }}</section>
+    <section>{{ item.cost }}</section>
     <button @click="isDone(item.id)">x</button>
   </div>
   <div v-else class="isDone">
-    {{ item.name }}
+    <section>{{ item.name }}</section>
+    <section>{{ item.cost }}</section>
   </div>
 </template>
 

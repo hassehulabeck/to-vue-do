@@ -1,6 +1,7 @@
 <template>
   <h1>Att göra</h1>
   <todo-form @add-todo="addTodo" />
+  <Economy :totalCost="totalCost" />
   <section>
     <ul>
       <li v-for="item in todolist" :key="item.id">
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import Economy from "./Economy.vue";
 import ListItem from "./ListItem.vue";
 import TodoForm from "./TodoForm.vue";
 
@@ -18,6 +20,7 @@ export default {
   components: {
     ListItem,
     TodoForm,
+    Economy,
   },
   name: "List",
   data() {
@@ -27,19 +30,33 @@ export default {
           id: 2,
           name: "Diska",
           needsToBeDone: true,
+          cost: 25,
         },
         {
           id: 3,
           name: "Tvätta",
           needsToBeDone: true,
+          cost: 40,
         },
         {
           id: 49,
           name: "Resa i tiden",
           needsToBeDone: false,
+          cost: 125,
         },
       ],
     };
+  },
+  computed: {
+    totalCost: function () {
+      return this.todolist.reduce((acc, item) => {
+        if (item.needsToBeDone) {
+          return acc + item.cost;
+        } else {
+          return acc;
+        }
+      }, 0);
+    },
   },
   methods: {
     isDone(idx) {
@@ -50,9 +67,10 @@ export default {
       // get new id-number
       let lastId = this.todolist[this.todolist.length - 1].id;
       let newTask = {
-        name: task,
+        name: task.name,
         id: lastId + 1,
         needsToBeDone: true,
+        cost: Number(task.cost), // Utan number är det ett strängvärde som kommer från input...
       };
       this.todolist.push(newTask);
     },
